@@ -1,0 +1,35 @@
+{
+    // Name that appears in the Codespaces picker
+    "name": "LAMP (PHP 8 + MySQL)",
+  
+    // The Dockerfile below sets up Apache, PHP and Composer
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+  
+    // Expose Apache on port 80
+    "forwardPorts": [80],
+  
+    // Automatically open a browser when the container starts
+    "portsAttributes": {
+      "80": { "label": "Website", "protocol": "http" }
+    },
+  
+    // Run a simple script after the container is ready:
+    // 1) start MySQL
+    // 2) import the schema.sql dump (if present)
+    "postCreateCommand": "/bin/bash .devcontainer/postCreate.sh",
+  
+    // Extensions that make life easier
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "bmewburn.vscode-intelephense-client",   // PHP intellisense
+          "xdebug.php-debug",                      // Debugger
+          "ms-azuretools.vscode-docker",           // Docker GUI
+          "github.codespaces"                      // Port forwarding helpers
+        ]
+      }
+    }
+  }
+  
